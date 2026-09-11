@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>ココナラ占い市場ウォッチ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#f5f6f8; --panel:#ffffff; --ink:#16213d; --ink-2:#40506f; --muted:#6b7793;
+  --line:#dde1e9; --line-2:#eceff4; --accent:#2b6fc0; --accent-2:#a8482a; --grid:#e3e7ee;
+}
+:root:not([data-theme="light"]){ }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#11151f; --panel:#171d2a; --ink:#e8ecf5; --ink-2:#b9c3d6; --muted:#8d99b3;
+    --line:#2a3244; --line-2:#212938; --accent:#5b9bea; --accent-2:#d4744c; --grid:#28303f;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11151f; --panel:#171d2a; --ink:#e8ecf5; --ink-2:#b9c3d6; --muted:#8d99b3;
+  --line:#2a3244; --line-2:#212938; --accent:#5b9bea; --accent-2:#d4744c; --grid:#28303f;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1020px;margin:0 auto;padding:0 28px}
+.wrap-narrow{max-width:660px;margin:0 auto}
+h1,h2{font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;font-weight:600;text-wrap:balance;letter-spacing:.01em}
+h1{font-size:clamp(28px,4.2vw,40px);line-height:1.35;margin:.3em 0 .35em}
+h2{font-size:clamp(21px,2.6vw,27px);margin:0 0 .55em;padding-bottom:.4em;border-bottom:1px solid var(--line)}
+p{margin:0 0 1.15em;color:var(--ink-2)}
+strong{color:var(--ink);font-weight:600}
+.masthead{background:var(--panel);border-bottom:1px solid var(--line);padding:52px 0 34px}
+.eyebrow{font-size:12.5px;letter-spacing:.16em;color:var(--muted);margin:0;text-transform:none}
+.hint{font-size:12px;color:var(--muted);margin:6px 0 0}
+th[data-sort]{cursor:pointer;user-select:none;position:relative;padding-right:20px}
+th[data-sort]:hover{color:var(--ink)}
+th[data-sort]::after{content:"95";position:absolute;right:7px;opacity:.35;font-size:11px}
+th[data-sort][data-dir=desc]::after{content:"93";opacity:1;color:var(--accent)}
+th[data-sort][data-dir=asc]::after{content:"91";opacity:1;color:var(--accent)}
+th[data-sort]:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.recs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.rec{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent-2);border-radius:3px;padding:14px 16px}
+.rec-k{font-size:12.5px;color:var(--muted);margin:0 0 4px}
+.rec-v{font-size:19px;margin:0 0 8px;color:var(--ink);font-family:"Shippori Mincho",serif}
+.rec-v b{font-weight:600}
+.rec-why{font-size:13px;color:var(--muted);margin:0;line-height:1.7}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:12px 0}
+.th{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:8px;overflow:hidden}
+.th img{width:100%;height:auto;display:block;border-radius:2px;background:var(--line-2)}
+.th figcaption{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.55;word-break:break-all}
+h3{font-size:17px;margin:28px 0 4px;font-family:"Shippori Mincho",serif;font-weight:600}
+.tcard{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+h4.mh{margin:22px 0 2px;font-size:15px;font-family:"Shippori Mincho",serif;font-weight:600;color:var(--ink)}
+.tcard h4{margin:0 0 6px;font-size:14.5px;font-family:"Shippori Mincho",serif;font-weight:600;color:var(--ink)}
+table.mini{font-size:13px}
+table.mini th,table.mini td{padding:5px 7px;white-space:nowrap}
+td.up{color:var(--accent-2);font-weight:600}
+span.up{color:var(--accent-2);font-weight:600}
+span.down{color:var(--muted)}
+td.down{color:var(--muted)}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--accent)}
+.status{font-size:13.5px;color:var(--muted);margin:0 0 18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.status .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block;flex:none}
+nav.tabs{display:flex;gap:24px;margin:0 0 22px;border-bottom:1px solid var(--line)}
+nav.tabs a{padding:0 2px 9px;color:var(--muted);font-size:14.5px;border-bottom:2px solid transparent;margin-bottom:-1px}
+nav.tabs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+nav.tabs a.on{color:var(--ink);font-weight:600;border-bottom-color:var(--accent-2)}
+nav.tabs a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.tile-note{font-size:12.5px;color:var(--muted);margin:10px 0 0;max-width:70ch;line-height:1.7}
+.tile-note.notice{border-left:2px solid var(--accent-2);padding-left:12px;color:var(--ink-2)}
+.lede{max-width:62ch;font-size:16.5px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;margin:28px 0 0;
+  background:var(--line);border:1px solid var(--line)}
+.facts>div{background:var(--panel);padding:14px 16px}
+.facts dt{font-size:12.5px;color:var(--muted);margin:0 0 2px}
+.facts dd{margin:0;font-size:29px;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.facts dd span{font-size:14px;font-weight:400;color:var(--muted);margin-left:3px}
+main{padding:8px 0 60px}
+section{margin:52px 0}
+.prose{max-width:660px;margin-inline:auto}
+.prose ul{margin:0;padding-left:1.15em;color:var(--ink-2)}
+.prose li{margin:.5em 0}
+.note{font-size:14.5px;color:var(--muted);margin:.7em 0 1.3em}
+figure{margin:18px 0 8px;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:18px 14px 8px;overflow-x:auto}
+.chart{width:100%;height:auto;display:block;min-width:520px}
+.chart .grid{stroke:var(--grid);stroke-width:1}
+.chart .ax{fill:var(--muted);font-size:12px;font-family:"Zen Kaku Gothic New",sans-serif}
+.chart .ax.sm{font-size:10.5px}
+.chart .val{fill:var(--ink-2);font-size:11.5px;font-variant-numeric:tabular-nums}
+.legend{display:flex;gap:20px;font-size:13px;color:var(--muted);margin:0 0 6px 6px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.smalls{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}
+.small figcaption{font-family:"Shippori Mincho",serif;font-size:15px;margin:0 0 4px 6px;color:var(--ink)}
+.small .chart{min-width:330px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:9px 13px;text-align:left;border-bottom:1px solid var(--line-2);white-space:nowrap}
+thead th{font-size:12.5px;color:var(--muted);font-weight:500;border-bottom:1px solid var(--line);background:var(--panel)}
+tbody th{font-weight:600;color:var(--ink)}
+td{color:var(--ink-2)}
+.n{text-align:right;font-variant-numeric:tabular-nums}
+.strong{color:var(--accent-2);font-weight:600}
+.words{white-space:normal;min-width:190px;color:var(--muted)}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:none}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);max-width:660px;margin-inline:auto}
+footer p{color:var(--muted);margin:0}
+@media (max-width:640px){ .wrap{padding:0 18px} .facts dd{font-size:24px} }
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="masthead"><div class="wrap">
+<nav class="tabs" aria-label="見る市場の切り替え"><a href="index.html">メルカリ</a><a href="coconala.html" class="on" aria-current="page">ココナラ</a></nav>
+<p class="eyebrow">ココナラ 占いカテゴリ</p>
+<h1>ココナラ占い市場ウォッチ</h1>
+<p class="status"><span class="dot" aria-hidden="true"></span>最終更新 2026-09-11 12:06　/　1時間おきに観測して集計を作り直しています</p>
+<p class="lede">ココナラの占いカテゴリを1時間おきに読み取っています。サービスごとに出ている販売実績の数を毎回記録し、前の観測との差をその間に売れた件数として数えています。いま追いかけているサービスは 532 件です。</p>
+<dl class="facts">
+<div><dt>今日売れた</dt><dd>0<span>件</span></dd></div>
+<div><dt>直近24時間に売れた</dt><dd>0<span>件</span></dd></div>
+<div><dt>追いかけているサービス</dt><dd>532<span>件</span></dd></div>
+<div><dt>今すぐ相談できる</dt><dd>67<span>件</span></dd></div>
+</dl>
+<p class="tile-note">売れた件数は、販売実績が増えた数です。電話占いは1回の通話が1件になります。観測を始めた直後は比べる相手がないため、2回目の観測から数字が出ます。</p>
+</div></header>
+<main class="wrap">
+<section class="prose"><h2>準備中</h2><p>まだ前後の観測がそろっていません。次の観測から、売れた件数が出ます。</p></section>
+<section><div class="wrap-narrow"><h2>日ごとの動き</h2><p class="note">観測を始めた日と今日は途中までの数なので、丸1日ぶんではありません。</p></div>
+<div class="tablewrap"><table class=""><thead><tr><th class="" data-sort="1" aria-sort="none" tabindex="0">日付</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">観測回数</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">売れた件数</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">売れたサービスの数</th></tr></thead><tbody><tr><td class="">2026-09-11</td><td class="n">1</td><td class="n">0</td><td class="n">0</td></tr></tbody></table></div><p class="hint">見出しをクリックすると並べ替えできます。</p>
+</section>
+<section><div class="wrap-narrow"><h2>いちばん売れているサービス</h2><p class="note">直近24時間に販売実績が増えた数の多い順です。</p></div>
+</section>
+<section><div class="wrap-narrow"><h2>時間で売るか、1回で売るか</h2><p class="note">分単位の料金は電話やチャットの占いです。1回の料金は、文章で届ける鑑定が中心になります。「1サービスあたり」は直近24時間の販売を、そのグループのサービス数で割った数です。</p></div>
+<div class="tablewrap"><table class=""><thead><tr><th class="" data-sort="1" aria-sort="none" tabindex="0">売り方</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">サービス数</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">直近24時間の販売</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">1サービスあたり</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">価格の中央値</th></tr></thead><tbody><tr><td class="">1回の料金(円)</td><td class="n">286</td><td class="n">0</td><td class="n">0</td><td class="n">1500</td></tr><tr><td class="">分単位の料金(円/分)</td><td class="n">246</td><td class="n">0</td><td class="n">0</td><td class="n">220</td></tr></tbody></table></div><p class="hint">見出しをクリックすると並べ替えできます。</p>
+</section>
+<section><div class="wrap-narrow"><h2>いくらのサービスが売れているか</h2><p class="note">料金の形ごとに価格帯で分けました。1サービスあたりの販売が多い帯ほど、よく売れています。</p></div>
+<div class="wrap-narrow"><h3>1回の料金</h3></div>
+<div class="tablewrap"><table class=""><thead><tr><th class="" data-sort="1" aria-sort="none" tabindex="0">価格帯</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">サービス数</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">直近24時間の販売</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">1サービスあたり</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">価格の中央値</th></tr></thead><tbody><tr><td class="">〜999円</td><td class="n">75</td><td class="n">0</td><td class="n">0</td><td class="n">500</td></tr><tr><td class="">1,000〜2,999円</td><td class="n">82</td><td class="n">0</td><td class="n">0</td><td class="n">1250</td></tr><tr><td class="">3,000〜4,999円</td><td class="n">57</td><td class="n">0</td><td class="n">0</td><td class="n">3000</td></tr><tr><td class="">5,000〜9,999円</td><td class="n">25</td><td class="n">0</td><td class="n">0</td><td class="n">5500</td></tr><tr><td class="">10,000円〜</td><td class="n">47</td><td class="n">0</td><td class="n">0</td><td class="n">20000</td></tr></tbody></table></div><p class="hint">見出しをクリックすると並べ替えできます。</p>
+<div class="wrap-narrow"><h3>分単位の料金</h3></div>
+<div class="tablewrap"><table class=""><thead><tr><th class="" data-sort="1" aria-sort="none" tabindex="0">価格帯</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">サービス数</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">直近24時間の販売</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">1サービスあたり</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">価格の中央値</th></tr></thead><tbody><tr><td class="">〜199円/分</td><td class="n">102</td><td class="n">0</td><td class="n">0</td><td class="n">140</td></tr><tr><td class="">200〜299円/分</td><td class="n">69</td><td class="n">0</td><td class="n">0</td><td class="n">240</td></tr><tr><td class="">300〜399円/分</td><td class="n">51</td><td class="n">0</td><td class="n">0</td><td class="n">340</td></tr><tr><td class="">400円/分〜</td><td class="n">24</td><td class="n">0</td><td class="n">0</td><td class="n">470</td></tr></tbody></table></div><p class="hint">見出しをクリックすると並べ替えできます。</p>
+</section>
+<section><div class="wrap-narrow"><h2>相談の分野ごと</h2><p class="note">分野ごとの人気順ページで見つけたサービスを、その分野として数えています。占い全体のページでしか見つかっていないものは「占い全体」に入ります。</p></div>
+<div class="tablewrap"><table class=""><thead><tr><th class="" data-sort="1" aria-sort="none" tabindex="0">分野</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">サービス数</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">直近24時間の販売</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">1サービスあたり</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">価格の中央値</th></tr></thead><tbody><tr><td class="">占い全体</td><td class="n">219</td><td class="n">0</td><td class="n">0</td><td class="n">500</td></tr><tr><td class="">総合運鑑定</td><td class="n">63</td><td class="n">0</td><td class="n">0</td><td class="n">500</td></tr><tr><td class="">恋愛占い</td><td class="n">63</td><td class="n">0</td><td class="n">0</td><td class="n">320</td></tr><tr><td class="">結婚占い</td><td class="n">60</td><td class="n">0</td><td class="n">0</td><td class="n">1000</td></tr><tr><td class="">スピリチュアル鑑定</td><td class="n">64</td><td class="n">0</td><td class="n">0</td><td class="n">500</td></tr><tr><td class="">仕事運・仕事占い</td><td class="n">63</td><td class="n">0</td><td class="n">0</td><td class="n">240</td></tr></tbody></table></div><p class="hint">見出しをクリックすると並べ替えできます。</p>
+</section>
+<section><div class="wrap-narrow"><h2>新人とベテランの売れ方</h2><p class="note">累計の販売実績の規模で分けました。新しく出た人にも売れているかが分かります。</p></div>
+<div class="tablewrap"><table class=""><thead><tr><th class="" data-sort="1" aria-sort="none" tabindex="0">累計の販売実績</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">サービス数</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">直近24時間の販売</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">1サービスあたり</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">価格の中央値</th></tr></thead><tbody><tr><td class="">0〜9件</td><td class="n">22</td><td class="n">0</td><td class="n">0</td><td class="n">500</td></tr><tr><td class="">10〜99件</td><td class="n">78</td><td class="n">0</td><td class="n">0</td><td class="n">1250</td></tr><tr><td class="">100〜999件</td><td class="n">149</td><td class="n">0</td><td class="n">0</td><td class="n">360</td></tr><tr><td class="">1,000件〜</td><td class="n">144</td><td class="n">0</td><td class="n">0</td><td class="n">320</td></tr></tbody></table></div><p class="hint">見出しをクリックすると並べ替えできます。</p>
+</section>
+<section><div class="wrap-narrow"><h2>待機しているかどうか</h2><p class="note">いちばん新しい観測で一覧に出ていた状態で分けています。</p></div>
+<div class="tablewrap"><table class=""><thead><tr><th class="" data-sort="1" aria-sort="none" tabindex="0">状態</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">サービス数</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">直近24時間の販売</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">1サービスあたり</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">価格の中央値</th></tr></thead><tbody><tr><td class="">表示なし</td><td class="n">267</td><td class="n">0</td><td class="n">0</td><td class="n">1500</td></tr><tr><td class="">今すぐ相談できる</td><td class="n">67</td><td class="n">0</td><td class="n">0</td><td class="n">240</td></tr><tr><td class="">離席中</td><td class="n">120</td><td class="n">0</td><td class="n">0</td><td class="n">200</td></tr><tr><td class="">予約を受付中</td><td class="n">51</td><td class="n">0</td><td class="n">0</td><td class="n">240</td></tr><tr><td class="">満枠</td><td class="n">27</td><td class="n">0</td><td class="n">0</td><td class="n">3000</td></tr></tbody></table></div><p class="hint">見出しをクリックすると並べ替えできます。</p>
+</section>
+<section class="prose"><h2>読むときの注意</h2><ul>
+<li>追いかけているのは、人気順と新着順、分野ごとの人気順のページに出てきたサービスです。占いカテゴリ全体は10万件を超えるので、その一部になります。</li>
+<li>一覧から外れたサービスは、また一覧に出てくるまで売れた数を追えません。</li>
+<li>評価コメントは詳細ページに出ている高評価のものだけです。低い評価は入っていません。</li>
+<li>ココナラの利用規約とメルカリの利用規約は別物です。ココナラは占いを正式なカテゴリとして扱っています。</li>
+</ul></section>
+<footer><p>この画面は 2026-09-11 12:14 時点の集計です。観測は1時間おきに続いていて、期間が伸びるほど数字が安定します。</p></footer>
+</main>
+
+<script>
+document.addEventListener('click', function (e) {
+  var th = e.target.closest ? e.target.closest('th[data-sort]') : null; if (!th) return;
+  sortBy(th);
+});
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  var th = e.target.closest ? e.target.closest('th[data-sort]') : null; if (!th) return;
+  e.preventDefault(); sortBy(th);
+});
+function sortBy(th) {
+  var table = th.closest('table'), tb = table.tBodies[0];
+  var idx = Array.prototype.indexOf.call(th.parentNode.children, th);
+  var desc = th.getAttribute('data-dir') !== 'desc';
+  Array.prototype.forEach.call(table.querySelectorAll('th[data-sort]'), function (h) {
+    h.removeAttribute('data-dir'); h.setAttribute('aria-sort', 'none');
+  });
+  th.setAttribute('data-dir', desc ? 'desc' : 'asc');
+  th.setAttribute('aria-sort', desc ? 'descending' : 'ascending');
+  var num = th.classList.contains('n');
+  var rows = Array.prototype.slice.call(tb.rows);
+  rows.sort(function (a, b) {
+    var x = a.cells[idx].textContent.trim(), y = b.cells[idx].textContent.trim();
+    if (num) {
+      var nx = parseFloat(x.replace(/[^0-9.\-]/g, '')), ny = parseFloat(y.replace(/[^0-9.\-]/g, ''));
+      if (isNaN(nx)) { nx = -Infinity; }
+      if (isNaN(ny)) { ny = -Infinity; }
+      return desc ? ny - nx : nx - ny;
+    }
+    return desc ? y.localeCompare(x, 'ja') : x.localeCompare(y, 'ja');
+  });
+  rows.forEach(function (r) { tb.appendChild(r); });
+}
+</script>
+
+</body>
+</html>
