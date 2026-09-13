@@ -57,6 +57,8 @@ th[data-sort]:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:12px 0}
 .th{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:8px;overflow:hidden}
 .th img{width:100%;height:auto;display:block;border-radius:2px;background:var(--line-2)}
+.th a{color:inherit;text-decoration:none;display:block}
+.th a:hover img{opacity:.85}
 .th figcaption{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.55;word-break:break-all}
 h3{font-size:17px;margin:28px 0 4px;font-family:"Shippori Mincho",serif;font-weight:600}
 .tcard{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
@@ -177,7 +179,7 @@ footer p{color:var(--muted);margin:0}
 <section><div class="wrap-narrow"><h2>ランクごとの売れ方</h2><p class="note">いま追いかけているサービスのランクの内訳は、プラチナ 557件、ゴールド 22件、シルバー 42件、ブロンズ 43件、レギュラー 154件、ランクなし 479件です。「ランクなし」はまだ1件も売れていない出品者で、カードにも詳細ページにもランクが出ません。人気順のページを中心に見ているため、プラチナに偏っています。下のランクの件数が少ないうちは、ランクごとの差は目安として読んでください。</p></div>
 </section>
 <section><div class="wrap-narrow"><h3>ランクごとの1日あたりの販売</h3><p class="note">人気順のページだけでは下のランクが少なく、新着順のページは次々に流れて見失います。そこでランクごとに同じ数ずつサービスを選んで、決まった間隔で詳細ページを見に行っています。いま追いかけているのはプラチナ 25件、ゴールド 22件、シルバー 25件、ブロンズ 25件、レギュラー 25件、ランクなし 25件です。観測した期間に販売実績が増えた数を、日数で割っています。</p></div>
-<div class="tablewrap"><table class=""><thead><tr><th class="" data-sort="1" aria-sort="none" tabindex="0">ランク</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">比べられたサービス</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">観測した日数の合計</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">売れた件数</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">1サービス1日あたり(平均)</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">同(中央値)</th></tr></thead><tbody><tr><td class="">プラチナ</td><td class="n">28</td><td class="n">61</td><td class="n">122</td><td class="n">1.91</td><td class="n">0.80</td></tr><tr><td class="">ゴールド</td><td class="n">21</td><td class="n">32.3</td><td class="n">4</td><td class="n">0.09</td><td class="n">0.00</td></tr><tr><td class="">シルバー</td><td class="n">27</td><td class="n">45.6</td><td class="n">3</td><td class="n">0.07</td><td class="n">0.00</td></tr><tr><td class="">ブロンズ</td><td class="n">24</td><td class="n">36.5</td><td class="n">3</td><td class="n">0.07</td><td class="n">0.00</td></tr><tr><td class="">レギュラー</td><td class="n">24</td><td class="n">33.4</td><td class="n">3</td><td class="n">0.08</td><td class="n">0.00</td></tr><tr><td class="">ランクなし</td><td class="n">20</td><td class="n">27.4</td><td class="n">0</td><td class="n">0.00</td><td class="n">0.00</td></tr></tbody></table></div><p class="hint">見出しをクリックすると並べ替えできます。</p>
+<div class="tablewrap"><table class=""><thead><tr><th class="" data-sort="1" aria-sort="none" tabindex="0">ランク</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">比べられたサービス</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">観測した日数の合計</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">売れた件数</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">1サービス1日あたり(平均)</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">同(中央値)</th></tr></thead><tbody><tr><td class="">プラチナ</td><td class="n">28</td><td class="n">62.2</td><td class="n">122</td><td class="n">1.90</td><td class="n">0.80</td></tr><tr><td class="">ゴールド</td><td class="n">21</td><td class="n">32.3</td><td class="n">4</td><td class="n">0.09</td><td class="n">0.00</td></tr><tr><td class="">シルバー</td><td class="n">27</td><td class="n">45.6</td><td class="n">3</td><td class="n">0.07</td><td class="n">0.00</td></tr><tr><td class="">ブロンズ</td><td class="n">24</td><td class="n">36.5</td><td class="n">3</td><td class="n">0.07</td><td class="n">0.00</td></tr><tr><td class="">レギュラー</td><td class="n">24</td><td class="n">33.4</td><td class="n">3</td><td class="n">0.08</td><td class="n">0.00</td></tr><tr><td class="">ランクなし</td><td class="n">20</td><td class="n">27.4</td><td class="n">0</td><td class="n">0.00</td><td class="n">0.00</td></tr></tbody></table></div><p class="hint">見出しをクリックすると並べ替えできます。</p>
 <p class="note wrap-narrow">観測中にランクが変わったサービスが 22 件あります。変わる前と後の売れ方は、件数がたまったら比べます。</p>
 </section>
 <section><div class="wrap-narrow"><h2>待機しているかどうか</h2><p class="note">いちばん新しい観測で一覧に出ていた状態で分けています。</p></div>
@@ -200,7 +202,7 @@ footer p{color:var(--muted);margin:0}
 <li>評価コメントは詳細ページに出ている高評価のものだけです。低い評価は入っていません。</li>
 <li>ココナラの利用規約とメルカリの利用規約は別物です。ココナラは占いを正式なカテゴリとして扱っています。</li>
 </ul></section>
-<footer><p>この画面は 2026-09-13 19:31 時点の集計です。観測は1時間おきに続いていて、期間が伸びるほど数字が安定します。</p></footer>
+<footer><p>この画面は 2026-09-13 19:33 時点の集計です。観測は1時間おきに続いていて、期間が伸びるほど数字が安定します。</p></footer>
 </main>
 
 <script>
