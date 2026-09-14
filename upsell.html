@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>アップセルの誘導の仕方</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#f5f6f8; --panel:#ffffff; --ink:#16213d; --ink-2:#40506f; --muted:#6b7793;
+  --line:#dde1e9; --line-2:#eceff4; --accent:#2b6fc0; --accent-2:#a8482a; --grid:#e3e7ee;
+}
+:root:not([data-theme="light"]){ }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#11151f; --panel:#171d2a; --ink:#e8ecf5; --ink-2:#b9c3d6; --muted:#8d99b3;
+    --line:#2a3244; --line-2:#212938; --accent:#5b9bea; --accent-2:#d4744c; --grid:#28303f;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11151f; --panel:#171d2a; --ink:#e8ecf5; --ink-2:#b9c3d6; --muted:#8d99b3;
+  --line:#2a3244; --line-2:#212938; --accent:#5b9bea; --accent-2:#d4744c; --grid:#28303f;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1020px;margin:0 auto;padding:0 28px}
+.wrap-narrow{max-width:660px;margin:0 auto}
+h1,h2{font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;font-weight:600;text-wrap:balance;letter-spacing:.01em}
+h1{font-size:clamp(28px,4.2vw,40px);line-height:1.35;margin:.3em 0 .35em}
+h2{font-size:clamp(21px,2.6vw,27px);margin:0 0 .55em;padding-bottom:.4em;border-bottom:1px solid var(--line)}
+p{margin:0 0 1.15em;color:var(--ink-2)}
+strong{color:var(--ink);font-weight:600}
+.masthead{background:var(--panel);border-bottom:1px solid var(--line);padding:52px 0 34px}
+.eyebrow{font-size:12.5px;letter-spacing:.16em;color:var(--muted);margin:0;text-transform:none}
+.hint{font-size:12px;color:var(--muted);margin:6px 0 0}
+th[data-sort]{cursor:pointer;user-select:none;position:relative;padding-right:20px}
+th[data-sort]:hover{color:var(--ink)}
+th[data-sort]::after{content:"95";position:absolute;right:7px;opacity:.35;font-size:11px}
+th[data-sort][data-dir=desc]::after{content:"93";opacity:1;color:var(--accent)}
+th[data-sort][data-dir=asc]::after{content:"91";opacity:1;color:var(--accent)}
+th[data-sort]:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.recs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.rec{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent-2);border-radius:3px;padding:14px 16px}
+.rec-k{font-size:12.5px;color:var(--muted);margin:0 0 4px}
+.rec-v{font-size:19px;margin:0 0 8px;color:var(--ink);font-family:"Shippori Mincho",serif}
+.rec-v b{font-weight:600}
+.rec-why{font-size:13px;color:var(--muted);margin:0;line-height:1.7}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:12px 0}
+.th{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:8px;overflow:hidden}
+.th img{width:100%;height:auto;display:block;border-radius:2px;background:var(--line-2)}
+.th a{color:inherit;text-decoration:none;display:block}
+.th a:hover img{opacity:.85}
+.th figcaption{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.55;word-break:break-all}
+h3{font-size:17px;margin:28px 0 4px;font-family:"Shippori Mincho",serif;font-weight:600}
+.tcard{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+h4.mh{margin:22px 0 2px;font-size:15px;font-family:"Shippori Mincho",serif;font-weight:600;color:var(--ink)}
+.tcard h4{margin:0 0 6px;font-size:14.5px;font-family:"Shippori Mincho",serif;font-weight:600;color:var(--ink)}
+table.mini{font-size:13px}
+table.mini th,table.mini td{padding:5px 7px;white-space:nowrap}
+td.up{color:var(--accent-2);font-weight:600}
+span.up{color:var(--accent-2);font-weight:600}
+span.down{color:var(--muted)}
+td.down{color:var(--muted)}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--accent)}
+.status{font-size:13.5px;color:var(--muted);margin:0 0 18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.status .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block;flex:none}
+nav.tabs{display:flex;gap:24px;margin:0 0 22px;border-bottom:1px solid var(--line)}
+nav.tabs a{padding:0 2px 9px;color:var(--muted);font-size:14.5px;border-bottom:2px solid transparent;margin-bottom:-1px}
+nav.tabs a:hover{color:var(--ink);border-bottom-color:var(--line)}
+nav.tabs a.on{color:var(--ink);font-weight:600;border-bottom-color:var(--accent-2)}
+nav.tabs a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.diffline{border-left:2px solid var(--accent);padding-left:12px;color:var(--ink-2)}
+p.wrap-narrow{margin-left:auto;margin-right:auto}   /* 注記の余白の指定が中央寄せを打ち消さないように */
+.tile-note{font-size:12.5px;color:var(--muted);margin:10px 0 0;max-width:70ch;line-height:1.7}
+.tile-note.notice{border-left:2px solid var(--accent-2);padding-left:12px;color:var(--ink-2)}
+.lede{max-width:62ch;font-size:16.5px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;margin:28px 0 0;
+  background:var(--line);border:1px solid var(--line)}
+.facts>div{background:var(--panel);padding:14px 16px}
+.facts dt{font-size:12.5px;color:var(--muted);margin:0 0 2px}
+.facts dd{margin:0;font-size:29px;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.facts dd span{font-size:14px;font-weight:400;color:var(--muted);margin-left:3px}
+main{padding:8px 0 60px}
+section{margin:52px 0}
+.prose{max-width:660px;margin-inline:auto}
+.prose ul{margin:0;padding-left:1.15em;color:var(--ink-2)}
+.prose li{margin:.5em 0}
+.note{font-size:14.5px;color:var(--muted);margin:.7em 0 1.3em}
+figure{margin:18px 0 8px;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:18px 14px 8px;overflow-x:auto}
+.chart{width:100%;height:auto;display:block;min-width:520px}
+.chart .grid{stroke:var(--grid);stroke-width:1}
+.chart .ax{fill:var(--muted);font-size:12px;font-family:"Zen Kaku Gothic New",sans-serif}
+.chart .ax.sm{font-size:10.5px}
+.chart .val{fill:var(--ink-2);font-size:11.5px;font-variant-numeric:tabular-nums}
+.legend{display:flex;gap:20px;font-size:13px;color:var(--muted);margin:0 0 6px 6px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.smalls{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}
+.small figcaption{font-family:"Shippori Mincho",serif;font-size:15px;margin:0 0 4px 6px;color:var(--ink)}
+.small .chart{min-width:330px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:9px 13px;text-align:left;border-bottom:1px solid var(--line-2);white-space:nowrap}
+thead th{font-size:12.5px;color:var(--muted);font-weight:500;border-bottom:1px solid var(--line);background:var(--panel)}
+tbody th{font-weight:600;color:var(--ink)}
+td{color:var(--ink-2)}
+.n{text-align:right;font-variant-numeric:tabular-nums}
+.strong{color:var(--accent-2);font-weight:600}
+.words{white-space:normal;min-width:190px;color:var(--muted)}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:none}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);max-width:660px;margin-inline:auto}
+footer p{color:var(--muted);margin:0}
+@media (max-width:640px){ .wrap{padding:0 18px} .facts dd{font-size:24px} }
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.whyall>summary{cursor:pointer;list-style:none}.whyall>summary::-webkit-details-marker{display:none}.whyall>summary h2{display:inline}.whyall>summary h2::after{content:' ▸';color:var(--muted)}.whyall[open]>summary h2::after{content:' ▾'}.whyall .count{margin-left:10px;font-size:13px;font-weight:400;color:var(--muted)}.why{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 18px;margin:10px 0}.why h3{margin:0 0 6px;font-size:15px;line-height:1.6}.why .rank{display:inline-block;min-width:1.6em;color:var(--muted)}.why .term{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:10px;font-size:11.5px;border:1px solid var(--line);color:var(--ink-2);font-weight:500}.why .theory{margin:4px 0;font-size:12.5px;color:var(--muted);line-height:1.7}.why li p{margin:2px 0}.mini.wide{width:100%;table-layout:fixed}.mini.wide th,.mini.wide td{white-space:normal;word-break:break-word;vertical-align:top;line-height:1.6}.mini.wide th:nth-child(1){width:24%}.mini.wide th:nth-child(2){width:8%}.mini.wide th:nth-child(4){width:14%}.why blockquote{margin:8px 0;padding:8px 12px;border-left:3px solid var(--line);white-space:pre-wrap;color:var(--ink-2);font-size:13px;line-height:1.7}.why .meta{font-size:12px;color:var(--muted);margin:4px 0}.why ol{padding-left:1.3em;margin:8px 0}.why li{margin:4px 0;line-height:1.7}
+.chap{margin:34px 0}.chap h3{margin:18px 0 6px;font-size:15px}.chap .terms{margin:4px 0 10px}.chap .term{display:inline-block;margin:0 6px 6px 0;padding:1px 9px;border-radius:10px;font-size:12px;border:1px solid var(--line);color:var(--ink-2)}.chap .idea{line-height:1.9}.chap .nums{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:10px 16px}.chap .nums p{margin:6px 0;line-height:1.8}.chap .doit{border-left:3px solid var(--line);padding:2px 12px}.toc ol{line-height:2}.toc a{text-decoration:none}.glos th:nth-child(1){width:22%}.glos th:nth-child(2){width:26%}
+.why.bad{border-color:#e7c3bd}.paths th:nth-child(1){width:18%}</style>
+</head>
+<body>
+<header class="masthead"><div class="wrap">
+<nav class="tabs" aria-label="見る市場の切り替え"><a href="index.html">メルカリ</a><a href="coconala.html">ココナラ</a><a href="threads.html">Threads</a><a href="x.html">X</a><a href="learn.html">占いで学ぶマーケティング</a><a href="upsell.html" class="on" aria-current="page">アップセルの誘導の仕方</a></nav>
+<p class="eyebrow">観測した数字とネットの実例から</p>
+<h1>アップセルの誘導の仕方</h1>
+<p class="status"><span class="dot" aria-hidden="true"></span>最終更新 2026-09-14 15:31　/　数字は1時間おきに入れ替わります</p>
+<p class="lede">入口の鑑定を気に入ってくれた人に、延長や本鑑定を案内する流れをまとめたページです。現場ではアップセルのほか、バックエンドやバック、本命商品とも呼びます。数字はメルカリの観測から、言い回しはネットに出ている実例の要点から作りました。</p>
+</div></header><main class="wrap">
+<section class="chap"><div class="wrap-narrow"><h2>いまの占いの市場の数字</h2><div class="nums"><p>メルカリで売り切れた追加・延長の商品は55件で、値段の中央値は2,400円です。</p>
+<div class="smalls">
+<div class="tcard"><h4>商品名によく入っている語</h4><table class="mini"><tbody><tr><th scope="row">延長</th><td class="n">36件</td></tr><tr><th scope="row">追加</th><td class="n">9件</td></tr><tr><th scope="row">10分</th><td class="n">7件</td></tr><tr><th scope="row">30分</th><td class="n">6件</td></tr><tr><th scope="row">リピーター</th><td class="n">4件</td></tr><tr><th scope="row">再鑑定</th><td class="n">4件</td></tr><tr><th scope="row">15分</th><td class="n">3件</td></tr><tr><th scope="row">20分</th><td class="n">2件</td></tr></tbody></table></div>
+<div class="tcard"><h4>値段の帯</h4><table class="mini"><tbody><tr><th scope="row">〜999円</th><td class="n">7件</td></tr><tr><th scope="row">1,000〜2,999円</th><td class="n">38件</td></tr><tr><th scope="row">3,000〜9,999円</th><td class="n">9件</td></tr><tr><th scope="row">10,000〜29,999円</th><td class="n">1件</td></tr></tbody></table></div></div>
+<p>追いかけている出品者244人で、アップセルの値段が入口の何倍かを出しました。中央値は1.7倍です。</p>
+<div class="tablewrap"><table class=""><thead><tr><th class="" data-sort="1" aria-sort="none" tabindex="0">入口に対するアップセルの値段</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">出品者</th></tr></thead><tbody><tr><td class="">3倍まで</td><td class="n">164</td></tr><tr><td class="">3〜10倍</td><td class="n">34</td></tr><tr><td class="">10〜30倍</td><td class="n">25</td></tr><tr><td class="">30倍より上</td><td class="n">21</td></tr></tbody></table></div><p class="hint">見出しをクリックすると並べ替えできます。</p>
+<p>入口を安くして、売上の多くをアップセルで得ている出品者の例です。</p>
+<div class="tablewrap"><table class=""><thead><tr><th class="" data-sort="1" aria-sort="none" tabindex="0">出品者</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">入口(円)</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">アップセル(円)</th><th class="n" data-sort="1" aria-sort="none" tabindex="0">売上に占めるアップセル(%)</th></tr></thead><tbody><tr><td class="">Masala(マサーラー)</td><td class="n">400</td><td class="n">1927</td><td class="n">35</td></tr><tr><td class="">月鏡ノア</td><td class="n">444</td><td class="n">777</td><td class="n">53</td></tr><tr><td class="">あおい｜霊視鑑定</td><td class="n">300</td><td class="n">4800</td><td class="n">78</td></tr><tr><td class="">神村つむぎ｜縁脈霊視</td><td class="n">333</td><td class="n">10900</td><td class="n">87</td></tr><tr><td class="">haru＊＊</td><td class="n">500</td><td class="n">1200</td><td class="n">37</td></tr></tbody></table></div><p class="hint">見出しをクリックすると並べ替えできます。</p>
+<p>入口商品の説明文で、延長や次の鑑定を先に予告している割合は、売れた商品で28%(1,291件中)、販売中の商品で31%(491件中)です。</p></div></div></section>
+<section class="chap"><div class="wrap-narrow"><h2>誘導の流れ</h2><ol>
+<li><strong>入口の鑑定で信頼を得る</strong><p class="idea">最初の鑑定は、<strong>相談した人が知りたいことに、分かる言葉でまっすぐ答える</strong>ことに使います。カードの意味の説明や専門用語は減らして、答えと理由を先に書きます。</p></li>
+<li><strong>次に占うとよい時期と理由を示す</strong><p class="idea">鑑定の最後に、<strong>いつ、どんなときにもう一度占うとよいか</strong>を具体的に書きます。「連絡が来たとき」「返事に迷ったとき」のように、相談する理由がはっきりすると、案内が押しつけに見えません。</p></li>
+<li><strong>選択肢を2〜3段で見せる</strong><p class="idea">延長や次の鑑定は、<strong>時間や内容の違う2〜3段</strong>で並べます。いちばん高い段があると、真ん中が選びやすくなります(松竹梅の法則)。</p></li>
+<li><strong>小さな一歩から始めてもらう</strong><p class="idea">いきなり大きな鑑定をすすめず、<strong>質問1つだけの追加や10分の延長</strong>から選べるようにします。小さな約束を一度引き受けた人は、次の案内も受け入れやすくなります(フット・イン・ザ・ドア)。</p></li>
+<li><strong>媒体の決まりの中で手続きする</strong><p class="idea">メルカリでは、取引メッセージで希望を聞いてから専用ページを作ります。ココナラには有料のオプションを付けられる仕組みがあります。<strong>どちらも外部への誘導は規約で制限されている</strong>ので、手続きはその場の中で完結させます。</p></li>
+<li><strong>買ってくれたあとも関係を続ける</strong><p class="idea">延長を買わなかった人にも、同じ丁寧さで結果を届けます。<strong>断られても関係が続く案内</strong>にしておくと、次の悩みのときにまた選ばれます。</p></li>
+</ol></div></section>
+<section class="chap"><div class="wrap-narrow"><h2>言い回しの例</h2><p class="note">集めた実例の要点をもとに、占いの鑑定の終わりに使える形で書きました。そのまま使わず、自分の鑑定の中身に合わせて直してください。</p><h3>使いたい言い方</h3>
+<div class="why"><h3>時期と理由をはっきりさせる</h3><blockquote>お相手の気持ちが動きやすいのは、今月の後半です。連絡が来たときや、返事に迷ったときに、もう一度カードを引くと次の一手がはっきりします。</blockquote><p>相談する理由と時期が分かるので、案内が売り込みに聞こえにくくなります。</p></div>
+<div class="why"><h3>選択肢を並べる</h3><blockquote>続きを見たいときは、10分の延長と、お相手の本音まで読む30分の鑑定を用意しています。</blockquote><p>2つ以上並べると、買うかどうかではなく、どちらにするかを考えてもらえます(松竹梅の法則)。</p></div>
+<div class="why"><h3>小さな一歩を用意する</h3><blockquote>まずは質問1つだけの追加からでも大丈夫です。</blockquote><p>小さな約束から始めると、次の案内も受け入れてもらいやすくなります(フット・イン・ザ・ドア)。</p></div>
+<div class="why"><h3>先に少し渡す</h3><blockquote>今回の結果の要点を、読み返しやすいように3行にまとめてお送りします。</blockquote><p>先に受け取ったものがあると、お返しをしたい気持ちが生まれます(返報性の原理)。</p></div>
+<h3>避けたい言い方</h3>
+<div class="why bad"><h3>いつ相談すればいいか分からない</h3><blockquote>また何かあれば、いつでもどうぞ。</blockquote><p>相談する時期が分からず、申し込みの手が止まりやすい言い方です。上の「時期と理由」の形に直します。</p></div>
+<div class="why bad"><h3>霊感で不安をあおる</h3><blockquote>このままでは不幸が続きます。お祓いをしないと大変なことになります。</blockquote><p>霊感などの特別な力を使って不安をあおり、契約させた場合は、2023年の消費者契約法の改正で取り消しの対象になりました。</p></div>
+<div class="why bad"><h3>急がせる期限</h3><blockquote>今日中に申し込まないと、運が逃げてしまいます。</blockquote><p>不安をあおる期限は、苦情と取り消しの元になります。</p></div>
+<div class="why bad"><h3>結果を約束する</h3><blockquote>この鑑定を受ければ、必ず復縁できます。</blockquote><p>結果は約束できません。約束した結果が出なければ、苦情や返金の話になります。</p></div>
+</div></section>
+<section class="chap"><div class="wrap-narrow"><h2>高額のアップセルをどう考えるか</h2><p class="idea">アップセルは、<strong>高ければいいわけではありません</strong>。値段が高いほど中身が見えにくくなり、払った額に見合わないと感じた人から苦情が出やすくなります。9万円や10万円を超えるような金額で中身の説明が足りないと、<strong>消費生活センターや消費者庁への相談につながる原因</strong>にもなります。</p><p class="idea">国民生活センターには、占いサイトやアプリの相談が年間1,000件以上寄せられています。やりとりを引き延ばされて、高額を払ってしまったという相談が目立ちます。</p><p class="idea">一方で、<strong>高額のアップセルも実際に売れています</strong>。上の数字でも、入口の30倍より高いアップセルを売っている出品者がいます。中身と値段の理由をはっきり説明できるなら、場合によっては使っていく必要がある道です。</p>
+<table class="mini wide paths"><thead><tr><th>道</th><th>良いところ</th><th>気をつけること</th><th>向いている人</th></tr></thead><tbody><tr><th scope="row">手ごろな延長を回数で重ねる</th><td>1回あたりの負担が小さく、断られにくい。満足してくれた人が何度も戻ってくる。苦情になりにくい。</td><td>1回の利益が小さいので、数をこなす時間が要る。</td><td>毎日たくさんの人と話せる人、長く同じお客さんと付き合いたい人</td></tr><tr><th scope="row">高額の本命商品を用意する</th><td>少ない人数でも売上が大きくなる。深い鑑定やフォローに時間をかけられる。</td><td>値段が高いほど中身が見えにくく、払った額に見合わないと感じた人から苦情や消費生活センターへの相談が出やすい。</td><td>何を渡すのかを言葉と形で説明できる人、少ない人を深く見たい人</td></tr></tbody></table>
+<p class="idea">どちらが正しいかは決まっていません。<strong>自分はどちらの道で続けたいかを、自分でしっかり考えてください</strong>。次の問いに答えられるかどうかが、決めるときの手がかりになります。</p><ol>
+<li>その鑑定で何を渡すのかを、時間・内容・その後のフォローで説明できますか。</li>
+<li>値段の根拠を、相談した人に聞かれたときに答えられますか。</li>
+<li>買った人があとで読み返しても、払ってよかったと思える中身になっていますか。</li>
+<li>断られても関係が続く案内になっていますか。</li>
+<li>返金や取り消しを求められたときの対応を、先に決めていますか。</li>
+</ol></div></section>
+<section class="chap"><div class="wrap-narrow"><h2>知っておきたい決まり</h2><ul><li>霊感などの特別な力を使って、「このままでは重大な不利益がある」と不安をあおって契約させた場合、<strong>2023年6月の消費者契約法の改正で、その契約は取り消せる</strong>ようになりました。取り消せる期間も延び、最長で契約から10年です。</li><li>メルカリとココナラは、それぞれの規約で外部への誘導を制限しています。アップセルの手続きは、その場の中で行ってください。</li><li>結果を約束する言い方は、約束した結果が出なかったときに返金や苦情の話になります。</li><li>困った人の相談先として、消費者ホットライン188があります。</li></ul><p class="note">出典　<a href="https://note.com/takatomiya_701/n/n897f15da4394" target="_blank" rel="noreferrer">みずのひろゆき「鑑定して終わりにしていませんか？次の申し込みにつながるやさしい一言の作り方」(note)</a>　<a href="https://akira-workshop.com/howto-write-fortune-telling-text/" target="_blank" rel="noreferrer">秋山アキラ「また依頼したくなる占いでの鑑定文章の書き方」</a>　<a href="https://www.gov-online.go.jp/article/202303/entry-9860.html" target="_blank" rel="noreferrer">政府広報オンライン「霊感商法等の悪質な勧誘による寄附や契約は取り消せます」</a>　<a href="https://www.caa.go.jp/policies/policy/consumer_policy/donation_solicitation/assets/consumer_policy_cms213_230421_01.pdf" target="_blank" rel="noreferrer">消費者庁「消費者契約法の改正」(PDF)</a>　<a href="https://www.kokusen.go.jp/news/data/n-20201126_1.html" target="_blank" rel="noreferrer">国民生活センター「それって占い？！占い師や鑑定士を名乗る者から次々とメッセージが届いてやめられない」</a>　<a href="https://www.kokusen.go.jp/t_box/data/t_box-faq_qa2021_15.html" target="_blank" rel="noreferrer">国民生活センター「占いサイトで鑑定士とのやりとりをやめられず高額なお金を支払った」</a></p></div></section>
+<section class="prose"><h2>読むときの注意</h2><ul><li>言い回しの例は、ネットの実例の要点をもとに書き起こしたものです。実例の文をそのまま写してはいません。</li><li>数字はメルカリで追いかけている範囲のものです。メルカリ全体の数ではありません。</li><li>法律の説明は一般的なものです。個別の判断が必要なときは、専門家や消費生活センターに相談してください。</li></ul></section>
+<footer><p>この画面は 2026-09-14 15:31 時点の集計です。</p></footer></main>
+
+<script>
+document.addEventListener('click', function (e) {
+  var th = e.target.closest ? e.target.closest('th[data-sort]') : null; if (!th) return;
+  sortBy(th);
+});
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  var th = e.target.closest ? e.target.closest('th[data-sort]') : null; if (!th) return;
+  e.preventDefault(); sortBy(th);
+});
+function sortBy(th) {
+  var table = th.closest('table'), tb = table.tBodies[0];
+  var idx = Array.prototype.indexOf.call(th.parentNode.children, th);
+  var desc = th.getAttribute('data-dir') !== 'desc';
+  Array.prototype.forEach.call(table.querySelectorAll('th[data-sort]'), function (h) {
+    h.removeAttribute('data-dir'); h.setAttribute('aria-sort', 'none');
+  });
+  th.setAttribute('data-dir', desc ? 'desc' : 'asc');
+  th.setAttribute('aria-sort', desc ? 'descending' : 'ascending');
+  var num = th.classList.contains('n');
+  var rows = Array.prototype.slice.call(tb.rows);
+  rows.sort(function (a, b) {
+    var x = a.cells[idx].textContent.trim(), y = b.cells[idx].textContent.trim();
+    if (num) {
+      var nx = parseFloat(x.replace(/[^0-9.\-]/g, '')), ny = parseFloat(y.replace(/[^0-9.\-]/g, ''));
+      if (isNaN(nx)) { nx = -Infinity; }
+      if (isNaN(ny)) { ny = -Infinity; }
+      return desc ? ny - nx : nx - ny;
+    }
+    return desc ? y.localeCompare(x, 'ja') : x.localeCompare(y, 'ja');
+  });
+  rows.forEach(function (r) { tb.appendChild(r); });
+}
+</script>
+
+</body>
+</html>
