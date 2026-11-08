@@ -84,6 +84,12 @@ nav.tabs a{flex:none}
 .goals a:hover{border-color:var(--accent);color:var(--accent)}
 .status .ago{font-weight:600;color:var(--ink)}
 .status .ago.stale{color:#b3402a}
+.topcards{margin:0 0 18px}
+.topcards-h{font-size:12.5px;color:var(--muted);margin:0 0 6px;letter-spacing:.03em}
+.aboutpage{margin:4px 0 12px;font-size:14px}
+.aboutpage>summary{cursor:pointer;color:var(--muted);font-size:13px}
+.status{display:block}
+.status .dot{margin-right:8px;vertical-align:middle}
 .toc{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 14px;font-size:13px}
 .toc a{color:var(--muted)}
 .toc a:hover{color:var(--accent)}
@@ -179,7 +185,7 @@ footer p{color:var(--muted);margin:0}
 <p class="eyebrow">Threads 占いの投稿</p>
 <h1>Threads占いウォッチ</h1>
 <p class="status"><span class="dot" aria-hidden="true"></span>最終更新 2026-11-08 22:36　/　1時間おきに観測して集計を作り直しています</p>
-<p class="lede">Threadsで占いの語を検索し、出てきた投稿と投稿したアカウントのページを1時間おきに読んでいます。同じ投稿を見るたびにいいね・コメント・再投稿の数を残し、どの投稿がどれだけ伸びているかを比べます。アカウントごとに、1日に何件投稿しているか、リプをしているかも記録しています。ログインはしていません。</p>
+
 <dl class="facts">
 <div><dt>観測した占いの投稿</dt><dd>128,629<span>件</span></dd></div>
 <div><dt>今日見つけた投稿</dt><dd>1,817<span>件</span></dd></div>
@@ -187,8 +193,8 @@ footer p{color:var(--muted);margin:0}
 <div><dt>記録したリプ</dt><dd>53,677<span>件</span></dd></div>
 <div><dt>直近24時間に増えたいいね</dt><dd>4,114<span>件</span></dd></div>
 </dl>
-<p class="tile-note">増えたいいねは、24時間のうちに2回以上見た投稿だけで数えています。</p>
-</div></header>
+
+</div><details class="aboutpage"><summary>このページの読み方・数字の数え方</summary><p class="lede">Threadsで占いの語を検索し、出てきた投稿と投稿したアカウントのページを1時間おきに読んでいます。同じ投稿を見るたびにいいね・コメント・再投稿の数を残し、どの投稿がどれだけ伸びているかを比べます。アカウントごとに、1日に何件投稿しているか、リプをしているかも記録しています。ログインはしていません。</p><p class="tile-note">増えたいいねは、24時間のうちに2回以上見た投稿だけで数えています。</p></details></header>
 <main class="wrap"><nav class="toc wrap-narrow" aria-label="この画面の章"><a href="#hot">いま伸びている投稿</a><a href="#why">伸びた理由を1件ずつ読む</a><a href="#sec3">フォロワーが伸びているアカウント</a><a href="#sec4">積み重ねのデータ</a><a href="#sec5">使うと伸びやすい語</a><a href="#sec6">伸びた投稿の書き方</a><a href="#sec7">投稿の型ごとの伸び方</a><a href="#sec8">アカウントの行動</a><a href="#sec9">はじめたばかりのアカウントと慣れたアカウント</a><a href="#sec10">発信者のペルソナ</a><a href="#sec11">投稿した時刻と伸び方</a><a href="#sec12">フォロワーの多さと伸び方</a><a href="#sec13">いいねの多い投稿</a><a href="#sec14">よく付けられているトピック</a><a href="#sec15">日ごとの動き</a><a href="#sec16">知っておくと役立つこと</a><a href="#sec17">読むときの注意</a></nav><div class="foldbar"><button type="button" onclick="document.querySelectorAll('details.secfold').forEach(function(d){d.open=true})">すべて開く</button><button type="button" onclick="document.querySelectorAll('details.secfold').forEach(function(d){d.open=false})">すべて閉じる</button></div>
 <section id="hot"><details class="secfold" open><summary class="wrap-narrow"><h2>いま伸びている投稿</h2></summary><div class="wrap-narrow"><p class="note">投稿してから3日以内の投稿を、1時間あたりのいいねの多い順に並べました。投稿を押すとThreadsで開きます。</p></div>
 <figure><svg viewBox="0 0 880 324" class="chart" role="img" aria-label="いま伸びている投稿"><line x1="230.0" y1="4" x2="230.0" y2="320" class="grid" /><text x="220" y="22.1" text-anchor="end" class="ax">Happy Halloween, @</text><rect x="230.0" y="9.0" width="536.0" height="17.0" rx="3" fill="#2b6fc0"><title>Happy Halloween, @nasa 956.4いいね/時間</title></rect><text x="772.0" y="22.1" text-anchor="start" class="val">956.4</text><text x="220" y="48.1" text-anchor="end" class="ax">い い ね す る だ け で  @</text><rect x="230.0" y="35.0" width="421.8" height="17.0" rx="3" fill="#2b6fc0"><title>い い ね す る だ け で  @nagami_urana 752.6いいね/時間</title></rect><text x="657.8" y="48.1" text-anchor="start" class="val">752.6</text><text x="220" y="74.1" text-anchor="end" class="ax">我有個中醫師朋友，年過四十還沒結 @</text><rect x="230.0" y="61.0" width="419.3" height="17.0" rx="3" fill="#2b6fc0"><title>我有個中醫師朋友，年過四十還沒結 @stevenchen56 748.1いいね/時間</title></rect><text x="655.3" y="74.1" text-anchor="start" class="val">748.1</text><text x="220" y="100.1" text-anchor="end" class="ax">愛知県民は買い占めしないんだ…👏 @</text><rect x="230.0" y="87.0" width="368.3" height="17.0" rx="3" fill="#2b6fc0"><title>愛知県民は買い占めしないんだ…👏 @notbroken197 657.1いいね/時間</title></rect><text x="604.3" y="100.1" text-anchor="start" class="val">657.1</text><text x="220" y="126.1" text-anchor="end" class="ax">い い ね し た 瞬 間、 悪 @</text><rect x="230.0" y="113.0" width="355.4" height="17.0" rx="3" fill="#2b6fc0"><title>い い ね し た 瞬 間、 悪 @ao_4420 634.2いいね/時間</title></rect><text x="591.4" y="126.1" text-anchor="start" class="val">634.2</text><text x="220" y="152.1" text-anchor="end" class="ax">⛰山羊座の方へ。 700年で、た @</text><rect x="230.0" y="139.0" width="329.5" height="17.0" rx="3" fill="#2b6fc0"><title>⛰山羊座の方へ。 700年で、た @kizasu_kante 588いいね/時間</title></rect><text x="565.5" y="152.1" text-anchor="start" class="val">588</text><text x="220" y="178.1" text-anchor="end" class="ax">この日の丸、見てください🇯🇵☀️ @</text><rect x="230.0" y="165.0" width="322.6" height="17.0" rx="3" fill="#2b6fc0"><title>この日の丸、見てください🇯🇵☀️ @noriko_358 575.6いいね/時間</title></rect><text x="558.6" y="178.1" text-anchor="start" class="val">575.6</text><text x="220" y="204.1" text-anchor="end" class="ax">大難が近づいている今、改めてお願 @</text><rect x="230.0" y="191.0" width="320.9" height="17.0" rx="3" fill="#2b6fc0"><title>大難が近づいている今、改めてお願 @hidaka_1192 572.6いいね/時間</title></rect><text x="556.9" y="204.1" text-anchor="start" class="val">572.6</text><text x="220" y="230.1" text-anchor="end" class="ax">私は嘘は言いません。 9月29日 @</text><rect x="230.0" y="217.0" width="315.5" height="17.0" rx="3" fill="#2b6fc0"><title>私は嘘は言いません。 9月29日 @ayafortune55 562.9いいね/時間</title></rect><text x="551.5" y="230.1" text-anchor="start" class="val">562.9</text><text x="220" y="256.1" text-anchor="end" class="ax">目が合った者だけ、読んでほしい。 @</text><rect x="230.0" y="243.0" width="257.4" height="17.0" rx="3" fill="#2b6fc0"><title>目が合った者だけ、読んでほしい。 @souryu_ryudo 459.3いいね/時間</title></rect><text x="493.4" y="256.1" text-anchor="start" class="val">459.3</text><text x="220" y="282.1" text-anchor="end" class="ax">今、しんどい子おるかい？ 最近、 @</text><rect x="230.0" y="269.0" width="250.5" height="17.0" rx="3" fill="#2b6fc0"><title>今、しんどい子おるかい？ 最近、 @chabudai_ura 446.9いいね/時間</title></rect><text x="486.5" y="282.1" text-anchor="start" class="val">446.9</text><text x="220" y="308.1" text-anchor="end" class="ax">い い ね し た 瞬 間、 悪 @</text><rect x="230.0" y="295.0" width="226.7" height="17.0" rx="3" fill="#2b6fc0"><title>い い ね し た 瞬 間、 悪 @tokino_urana 404.5いいね/時間</title></rect><text x="462.7" y="308.1" text-anchor="start" class="val">404.5</text></svg></figure>
@@ -486,7 +492,7 @@ astro_anil</blockquote><ol>
 <li>「伸びた理由を1件ずつ読む」は、本文と観測した数字をAI(Claude)に渡して書かせた見立てです。数字は観測した値だけを使わせていますが、理由そのものは確かめようがないため、考え方の手がかりとして読んでください。</li>
 <li>数字はThreads全体の件数ではありません。どの型や書き方が伸びやすいかという向きとして読んでください。</li>
 </ul></details></section>
-<footer><p>この画面は 2026-11-08 23:40 時点の集計です。観測は1時間おきに続いていて、期間が伸びるほど数字が安定します。</p></footer>
+<footer><p>この画面は 2026-11-08 23:49 時点の集計です。観測は1時間おきに続いていて、期間が伸びるほど数字が安定します。</p></footer>
 </main>
 
 <script>
